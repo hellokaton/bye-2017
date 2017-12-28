@@ -97,8 +97,13 @@ public class IndexController {
     @PostRoute("star/:rid")
     @JSON
     public RestResponse star(@PathParam String rid) {
-        recordService.addStar(rid);
-        return RestResponse.ok();
+        if (rateLimiter.tryAcquire()) {
+            recordService.addStar(rid);
+            recordService.addStar(rid);
+            return RestResponse.ok();
+        } else {
+            return RestResponse.fail("Fuck [The frequency is too fast]!");
+        }
     }
 
 }

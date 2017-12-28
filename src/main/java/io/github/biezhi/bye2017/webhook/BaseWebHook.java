@@ -23,13 +23,14 @@ public class BaseWebHook implements WebHook {
         Response response = signature.response();
         String   ip       = request.address();
 
-        log.info("客户端UA: {}", request.header("user-agent"));
-        log.info("客户端IP: {}", request.address());
-
         if (BlackCache.isBlock(ip)) {
-            response.text("你被禁止访问了, 请 30 分钟后再来。");
+            response.text("你被禁止访问了, 请向管理员充钱。");
             return false;
         }
+
+        log.info("客户端UA: {}", request.header("user-agent"));
+        log.info("客户端IP: {}", ip);
+
         request.attribute("isDev", WebContext.blade().devMode());
         request.attribute("version", WebContext.blade().environment().get("app.version", "0.0.1"));
         request.attribute("cdn", WebContext.blade().environment().getOrNull("app.cdn"));

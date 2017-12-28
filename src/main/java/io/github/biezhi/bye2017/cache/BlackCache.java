@@ -1,8 +1,5 @@
 package io.github.biezhi.bye2017.cache;
 
-import io.github.biezhi.bye2017.model.entity.Blacklist;
-
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -26,7 +23,7 @@ public class BlackCache {
      * @return
      */
     public static boolean isBlock(String ip) {
-        return ips.parallelStream().filter(i -> i.equals(ip)).count() > 0;
+        return ips.contains(ip);
     }
 
     /**
@@ -36,13 +33,6 @@ public class BlackCache {
      */
     public static void addBlock(String ip) {
         ips.add(ip);
-
-        EXECUTOR_SERVICE.submit(() -> {
-            Blacklist blackList = new Blacklist();
-            blackList.setCreated(new Date());
-            blackList.setIp(ip);
-            blackList.save();
-        });
     }
 
     /**
@@ -52,11 +42,6 @@ public class BlackCache {
      */
     public static void addWhitelist(String ip) {
         ips.remove(ip);
-        EXECUTOR_SERVICE.submit(() -> {
-            Blacklist blackList = new Blacklist();
-            blackList.setIp(ip);
-            blackList.delete();
-        });
     }
 
     public static Set<String> blockList() {
