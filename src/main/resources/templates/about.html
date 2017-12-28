@@ -8,6 +8,30 @@
 #include("./_includes/icons.html")
 #include("./_includes/nav.html")
 #include("./_includes/header.html")
+
+<main class="wrap">
+    <div class="mdui-container">
+        <div class="row mdui-center mdui-text-center">
+            <h1>我tm要写什么让这群沙雕看呢？</h1>
+        </div>
+        <div>
+            <link rel="stylesheet" href="https://obbuo9upd.qnssl.com/gitalk/gitalk.css">
+            <script src="https://obbuo9upd.qnssl.com/gitalk/gitalk.min.js"></script>
+            <div id="gitalk-container" style="margin: 0 auto; width: 80%; padding-bottom: 20px;"></div>
+            <script>
+                var gitalk = new Gitalk({
+                    clientID: '',
+                    clientSecret: '',
+                    repo: '',
+                    owner: '',
+                    admin: [''],
+                    distractionFreeMode: true
+                });
+                gitalk.render('gitalk-container');
+            </script>
+        </div>
+    </div>
+</main>
 #include("./_includes/footer.html")
 </body>
 </html>
