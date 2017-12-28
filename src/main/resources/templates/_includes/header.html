@@ -1,0 +1,124 @@
+<header class="header">
+    <div style="padding-top: 400px;"></div>
+    <a href="/">
+        <h1 class="bye-title" data-content="再见👋 我的2017">再见👋 我的2017</h1>
+    </a>
+    #if(is_home)
+    <div class="header-buttons mdui-center" style="margin: 0 auto;">
+        <div class="mdui-container-fluid">
+            <div class="mdui-col-xs-4"></div>
+            <div id="cplayer" class="mdui-col-xs-2" style="z-index: 0;"></div>
+            <div class="mdui-col-xs-2 mdui-m-l-4">
+                <a class="btn btn-green talk-about" mdui-tooltip="{content: '我的2017想告诉全世界'}" style="font-weight: 300; margin: 0;">
+                    🤔 我有话说
+                </a>
+            </div>
+            <div class="mdui-col-xs-4"></div>
+        </div>
+    </div>
+    #else
+    <div class="mdui-p-t-4"></div>
+    #end
+</header>
+
+<div class="mdui-dialog" id="record-dialog">
+    <div class="mdui-dialog-content">
+        <div class="mdui-dialog-title">🐥🐥🐥🐥🐥 我有话要说</div>
+        <form>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons" style="margin-bottom: 15px;">&#xe87c;</i>
+                <label class="mdui-textfield-label">网络人称: papi酱</label>
+                <input name="nickname" class="mdui-textfield-input" type="text" required maxlength="15"/>
+                <div class="mdui-textfield-error">昵称不能为空</div>
+            </div>
+            <div class="mdui-textfield">
+                <i class="mdui-icon material-icons">&#xe55f;</i>
+                <select id="loc_city" name="location" style="width:120px; margin-left: 56px;">
+                    <option value="">所在城市</option>
+                    <option value="北京">北京</option>
+                    <option value="上海">上海</option>
+                    <option value="广州">广州</option>
+                    <option value="深圳">深圳</option>
+                    <option value="杭州">杭州</option>
+                    <option value="成都">成都</option>
+                    <option value="武汉">武汉</option>
+                    <option value="西安">西安</option>
+                    <option value="昆明">昆明</option>
+                    <option value="青岛">青岛</option>
+                    <option value="南京">南京</option>
+                    <option value="大连">大连</option>
+                    <option value="苏州">苏州</option>
+                    <option value="长沙">长沙</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+            <div class="mdui-textfield">
+                <i class="mdui-icon material-icons">wc</i>
+                <label class="mdui-radio" style="padding-left: 28px; margin-left: 56px;">
+                    <input type="radio" name="sex" value="1" checked/>
+                    <i class="mdui-radio-icon"></i>男&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <label class="mdui-radio" style="padding-left: 24px">
+                    <input type="radio" name="sex" value="0"/>
+                    <i class="mdui-radio-icon"></i>女&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <label class="mdui-radio" style="padding-left: 24px">
+                    <input type="radio" name="sex" value="2"/>
+                    <i class="mdui-radio-icon"></i>未知
+                </label>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe250;</i>
+                <label class="mdui-textfield-label">个人主页: https://biezhi.me </label>
+                <input name="homeUrl" class="mdui-textfield-input" type="text"/>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe87d;</i>
+                <label class="mdui-textfield-label">感情生活: 还是单身 emmmm (选填)</label>
+                <textarea name="feeling" class="mdui-textfield-input"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe912;</i>
+                <label class="mdui-textfield-label">工作情况: 认识了一群有趣的同事, 工资还涨了 (选填)</label>
+                <textarea name="job" class="mdui-textfield-input"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe54b;</i>
+                <label class="mdui-textfield-label">读书分享: 读了《程序员养生指南》感触颇深 (选填)</label>
+                <textarea name="book" class="mdui-textfield-input"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe405;</i>
+                <label class="mdui-textfield-label">最近听的一首歌: 《难忘的一天》 - 许巍 (选填)</label>
+                <textarea name="music" class="mdui-textfield-input"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe566;</i>
+                <label class="mdui-textfield-label">身体健康: 坚持 100 天 3KM 夜跑 (选填)</label>
+                <textarea name="health" class="mdui-textfield-input"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe5dd;</i>
+                <label class="mdui-textfield-label">技术成长: 研究了 JVM 垃圾回收机制 (选填)</label>
+                <textarea name="technology" class="mdui-textfield-input"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe8f6;</i>
+                <label class="mdui-textfield-label">2018展望: 先定个小目标，比如赚他一个亿 (选填)</label>
+                <textarea name="outlook" class="mdui-textfield-input"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">&#xe3ae;</i>
+                <label class="mdui-textfield-label">其他想说的</label>
+                <textarea name="other" class="mdui-textfield-input"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-btn-raised mdui-ripple" mdui-dialog-close>
+            <i class="mdui-icon mdui-icon-left material-icons">power_settings_new</i>
+            老夫还没想好</button>
+        <button style="color: #fff!important;background-color: #ff4081!important;" id="record-btn" class="mdui-btn mdui-btn-raised mdui-ripple">
+            <i class="mdui-icon mdui-icon-left material-icons">done_all</i>记录我的这一刻</button>
+    </div>
+</div>

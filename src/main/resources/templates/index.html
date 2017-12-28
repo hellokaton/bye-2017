@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>再见！我的2017 - 2017年终总结，给未来的自己</title>
+    #include("./_includes/metas.html")
+    <link href="${cdn}/static/css/select2.css" rel="stylesheet"/>
+</head>
+<body class="emoji-container">
+#include("./_includes/icons.html")
+#include("./_includes/nav.html")
+#include("./_includes/header.html")
+<main class="wrap" id="app">
+    <div class="row">
+        <article id="{{ item.id }}" class="emoji mdui-col-xs-4" v-for="item in records">
+            <div class="profile-card">
+                <header class="profile-header">
+                    <img :src="'${cdn}/static/img/random/' + item.picid + '.jpg'">
+                </header>
+                <div class="profile-card-body">
+                    <h2 class="card-title">
+                        <a >{{ item.nickname }}</a>
+                    </h2>
+                    <h4 class="card-subtitle" v-html="item.intro">
+
+                    </h4>
+                    <p class="card-description" v-html="item.content">
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <i class="mdui-icon material-icons">&#xe192;</i> {{ item.created }}&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:void(0)" @click="doStar(item.id, $event)">
+                        <i class="mdui-icon material-icons">&#xe8dc;</i>&nbsp;&nbsp; <span class="star">{{ item.stars }}</span> 点赞
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="row center-xs clearfix" style="margin:0 auto;">
+        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" @click="loadMore">加载更多</button>
+    </div>
+</main>
+#include("./_includes/footer.html")
+<script type="text/javascript" src="${cdn}/static/js/select2.js"></script>
+<script type="text/javascript" src="${cdn}/static/js/select2_locale_zh-CN.js"></script>
+#if(isDev)
+<script type="text/javascript" src="/static/js/main.js?v=${version}"></script>
+#else
+<script type="text/javascript" src="${cdn}/static/js/main.min.js?v=${version}"></script>
+#end
+</body>
+</html>
