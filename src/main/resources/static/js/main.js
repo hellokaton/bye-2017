@@ -198,6 +198,10 @@ $(document).ready(function () {
             }
         });
     });
+
+    if($(window).width() < 600){
+        $('#cplayer').parent().remove();
+    }
 });
 
 function objectifyForm(formArray) {
@@ -216,8 +220,17 @@ function getCookie(name) {
         return null;
 }
 
-function writeCookie(name, value, days) {
-    var exp = new Date();
-    exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+function IsPC() {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+        "SymbianOS", "Windows Phone",
+        "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
 }

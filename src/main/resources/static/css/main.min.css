@@ -716,6 +716,10 @@ main.wrap {
     display: block;
 }
 
+.loader .line-scale-pulse-out > div {
+    background-color: #ff7281;
+}
+
 .contributor-picture {
     max-width: 100%;
     border-radius: 50%;
