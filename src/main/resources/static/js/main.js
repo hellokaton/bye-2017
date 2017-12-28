@@ -79,17 +79,22 @@ $(document).ready(function () {
         data: {
             page: 1,
             records: [],
-            loading: true
+            loading: true,
+            loadText: '加载更多'
         },
         methods: {
-            queryRecords: function () {
+            queryRecords: function (target) {
                 var _this = this;
-                _this.loading = true;
                 axios.get("/records/" + this.page)
                     .then(function (response) {
                         $('#app .loader').hide();
                         var list = response.data.payload;
+                        if(target){
+                            _this.loadText = '加载更多';
+                            target.disabled = false;
+                        }
                         if (list.length == 0) {
+                            _this.page = _this.page < 2 ? 1 : _this.page-1;
                             $('.mdui-snackbar').remove();
                             mdui.snackbar({
                                 message: '没有数据了~'
@@ -99,8 +104,8 @@ $(document).ready(function () {
                         _this.records = _this.records.concat(list);
                         _this.loading = false;
                     }).catch(function (error) {
-                    console.log(error);
-                });
+                        console.log(error);
+                    });
             },
             doStar: function (id, event) {
                 if (event) {
@@ -123,8 +128,10 @@ $(document).ready(function () {
                 }
             },
             loadMore: function (event) {
+                this.loadText = '正在加载... 别急啊( ⊙ o ⊙ )';
+                event.target.disabled = true;
                 this.page += 1;
-                this.queryRecords();
+                this.queryRecords(event.target);
             },
             reload: function () {
                 var _this = this;
@@ -218,19 +225,4 @@ function getCookie(name) {
         return unescape(arr[2]);
     else
         return null;
-}
-
-function IsPC() {
-    var userAgentInfo = navigator.userAgent;
-    var Agents = ["Android", "iPhone",
-        "SymbianOS", "Windows Phone",
-        "iPad", "iPod"];
-    var flag = true;
-    for (var v = 0; v < Agents.length; v++) {
-        if (userAgentInfo.indexOf(Agents[v]) > 0) {
-            flag = false;
-            break;
-        }
-    }
-    return flag;
 }

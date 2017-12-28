@@ -230,7 +230,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 3;
     transition: all .2s ease-in-out;
     visibility: hidden
 }
@@ -519,7 +519,8 @@ section {
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    text-align: center
+    max-width: 100%;
+    text-align: center;
 }
 
 .header h2 {

@@ -9,17 +9,16 @@ window.onload = function () {
                 artist: data.info.songs[0].ar.map(function (ar) {
                     return ar.name
                 }).join(','),
-                poster: data.pic.url.replace('http://', 'https://'),
+                poster: data.pic.url.replace('http://', '//'),
                 lyric: data.lyric.lyric,
                 sublyric: data.lyric.tlyric,
-                src: data.url.url.replace('http://', 'https://'),
+                src: data.url.url.replace('http://', '//'),
                 album: data.info.songs[0].al.name
             };
             this.add(obj);
             return obj;
         }.bind(this))
     };
-
     var player = new cplayer({
         element: document.getElementById('cplayer'),
         zoomOutKana: true,
@@ -33,6 +32,8 @@ window.onload = function () {
     player.add163(27180681);
     player.add163(167975);
     player.add163(25906124);
+    player.add163(346576);
+    player.add163(346075);
     player.add163(4164317);
     player.add163(18374823);
     player.add163(25731674);
