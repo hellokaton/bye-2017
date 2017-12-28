@@ -78,13 +78,16 @@ $(document).ready(function () {
         el: '#app',
         data: {
             page: 1,
-            records: []
+            records: [],
+            loading: true
         },
         methods: {
             queryRecords: function () {
                 var _this = this;
+                _this.loading = true;
                 axios.get("/records/" + this.page)
                     .then(function (response) {
+                        $('#app .loader').hide();
                         var list = response.data.payload;
                         if (list.length == 0) {
                             $('.mdui-snackbar').remove();
@@ -94,6 +97,7 @@ $(document).ready(function () {
                             return;
                         }
                         _this.records = _this.records.concat(list);
+                        _this.loading = false;
                     }).catch(function (error) {
                     console.log(error);
                 });

@@ -9,7 +9,19 @@
 #include("./_includes/icons.html")
 #include("./_includes/nav.html")
 #include("./_includes/header.html")
-<main class="wrap" id="app">
+<main class="wrap mdui-text-center" id="app">
+    <div class="loader mdui-container mdui-center" v-if="loading">
+        <div class="line-scale-pulse-out">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div style="color: #989898;">
+            正在拼命加载...
+        </div>
+    </div>
     <div class="row">
         <article id="{{ item.id }}" class="emoji mdui-col-xs-4" v-for="item in records">
             <div class="profile-card">
@@ -35,7 +47,7 @@
             </div>
         </article>
     </div>
-    <div class="row center-xs clearfix" style="margin:0 auto;">
+    <div class="row center-xs clearfix mdui-center" v-if="records.length > 11">
         <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" @click="loadMore">加载更多</button>
     </div>
 </main>

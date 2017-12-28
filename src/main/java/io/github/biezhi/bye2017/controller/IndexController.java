@@ -19,6 +19,7 @@ import io.github.biezhi.bye2017.utils.ByeUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static io.github.biezhi.bye2017.constant.AllConst.WEB_CLIENT_SIGN;
 
@@ -51,6 +52,11 @@ public class IndexController {
 
         if (rateLimiter.tryAcquire()) {
             List<RecordDto> recordDtos = recordService.queryRecords("created desc", page, 12);
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return RestResponse.ok(recordDtos);
         } else {
             return RestResponse.fail("Fuck [The frequency is too fast]!");
